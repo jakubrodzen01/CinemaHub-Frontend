@@ -28,6 +28,7 @@ export class AuthService {
           .subscribe({
               next: me => {
                 localStorage.setItem('me', JSON.stringify(me));
+                localStorage.setItem('role', me.role);
                 this.router.navigate(['/home']);
               },
               error: err => {
@@ -45,6 +46,7 @@ export class AuthService {
     localStorage.removeItem(this.tokenKey);
     localStorage.removeItem('username');
     localStorage.removeItem('me');
+    localStorage.removeItem('role');
     this.router.navigate(['/login']);
   }
 

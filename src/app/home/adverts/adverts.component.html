@@ -1,1 +1,31 @@
-<p>adverts works!</p>
+<div class="container mt-5">
+  <h2>Adverts</h2>
+  <div *ngIf="adverts.length === 0">
+    <p>No adverts available.</p>
+  </div>
+  <div *ngFor="let advert of adverts">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">{{ advert.title }}</h5>
+        <p class="card-text">{{ advert.text }}</p>
+        <p class="card-text"><small class="text-muted">Added: {{ advert.sendDate }}</small></p>
+        <button *ngIf="role === 'MANAGER'" class="btn btn-danger" (click)="deleteAdvert(advert.idAdvert)">Delete</button>
+      </div>
+    </div>
+  </div>
+  <button *ngIf="role === 'MANAGER'" class="btn btn-primary" (click)="openModal()">Add Advert</button>
+
+  <app-modal *ngIf="showModal" title="Add New Advert" (close)="closeModal()">
+    <form (ngSubmit)="addAdvert()">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" [(ngModel)]="newAdvert.title" name="title" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="text">Text</label>
+        <textarea id="text" [(ngModel)]="newAdvert.text" name="text" class="form-control" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-success mt-3">Add Advert</button>
+    </form>
+  </app-modal>
+</div>

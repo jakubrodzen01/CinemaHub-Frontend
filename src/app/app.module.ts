@@ -19,6 +19,7 @@ import { ProfileComponent } from './home/profile/profile.component';
 import { DashboardComponent } from './home/dashboard/dashboard.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AlertComponent } from './shared/components/alert/alert.component';
+import { ModalComponent } from './shared/components/modal/modal.component';
 
 export function tokenGetter() {
   return localStorage.getItem('auth_token');
@@ -36,7 +37,8 @@ export function tokenGetter() {
     ProfileComponent,
     DashboardComponent,
     PageNotFoundComponent,
-    AlertComponent
+    AlertComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
