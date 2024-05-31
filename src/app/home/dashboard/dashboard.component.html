@@ -1,1 +1,8 @@
-<p>dashboard works!</p>
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title">{{ welcomeMessage }}</h2>
+      <p class="card-text">Today is {{ currentDate | date: 'EEEE, dd.MM.yyyy' }}</p>
+    </div>
+  </div>
+</div>

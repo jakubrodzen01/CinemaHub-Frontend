@@ -9,13 +9,10 @@ import { AuthService } from '../core/services/auth.service';
 export class LoginComponent {
   username: string = '';
   password: string = '';
-  errorMessage: string = '';
 
   constructor(private authService: AuthService) { }
 
   login() {
     this.authService.login(this.username, this.password);
-
-
   }
 }

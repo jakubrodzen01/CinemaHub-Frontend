@@ -16,8 +16,24 @@ export class AuthService {
     return this.http.post<any>(this.apiUrl, { username, password })
       .subscribe({
         next: response => {
-          localStorage.setItem(this.tokenKey, response.token);
-          this.router.navigate(['/home']);
+          //zapisanie w local storage informacji z tokena
+          const token = response.token;
+          const helper = new JwtHelperService();
+          const decodedToken = helper.decodeToken(token);
+          const username = decodedToken.sub;
+          localStorage.setItem(this.tokenKey, token);
+          localStorage.setItem('username', username);
+
+          this.http.get<any>('http://localhost:8080/api/v1/user/getMe')
+          .subscribe({
+              next: me => {
+                localStorage.setItem('me', JSON.stringify(me));
+                this.router.navigate(['/home']);
+              },
+              error: err => {
+                console.error('GetMe error:', err);
+              }
+            });
         },
         error: err => {
           console.error('Login error:', err);
@@ -27,6 +43,8 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem(this.tokenKey);
+    localStorage.removeItem('username');
+    localStorage.removeItem('me');
     this.router.navigate(['/login']);
   }
 
