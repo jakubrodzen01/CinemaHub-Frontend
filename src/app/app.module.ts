@@ -20,6 +20,8 @@ import { DashboardComponent } from './home/dashboard/dashboard.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AlertComponent } from './shared/components/alert/alert.component';
 import { ModalComponent } from './shared/components/modal/modal.component';
+import { EmployeeComponent } from './home/employee/employee.component';
+import { DeleteConfirmationModalComponent } from './shared/components/modal/delete-confirmation-modal/delete-confirmation-modal.component';
 
 export function tokenGetter() {
   return localStorage.getItem('auth_token');
@@ -38,7 +40,9 @@ export function tokenGetter() {
     DashboardComponent,
     PageNotFoundComponent,
     AlertComponent,
-    ModalComponent
+    ModalComponent,
+    EmployeeComponent,
+    DeleteConfirmationModalComponent
   ],
   imports: [
     BrowserModule,

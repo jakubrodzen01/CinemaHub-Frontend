@@ -11,6 +11,8 @@ export class AdvertsComponent implements OnInit {
   adverts: any[] = [];
   role: string | null = localStorage.getItem('role');
   showModal: boolean = false;
+  showConfirmModal: boolean = false;
+  selectedAdvertId: string | null = null;
 
   newAdvert = {
     title: '',
@@ -34,12 +36,29 @@ export class AdvertsComponent implements OnInit {
     );
   }
 
+  openConfirmModal(id: string) {
+    this.selectedAdvertId = id;
+    this.showConfirmModal = true;
+  }
+
+  closeConfirmModal() {
+    this.showConfirmModal = false;
+    this.selectedAdvertId = null;
+  }
+
   openModal() {
     this.showModal = true;
   }
 
   closeModal() {
     this.showModal = false;
+  }
+
+  clearNewAdvert() {
+    this.newAdvert = {
+      title: '',
+      text: ''
+    };
   }
 
   addAdvert() {
@@ -50,6 +69,7 @@ export class AdvertsComponent implements OnInit {
         () => {
           this.loadAdverts();
           this.closeModal();
+          this.clearNewAdvert();
         },
         error => {
           console.error('Error adding advert:', error);
@@ -58,15 +78,14 @@ export class AdvertsComponent implements OnInit {
     }
   }
 
-  deleteAdvert(advertId: string) {
+  deleteAdvert() {
     const token = localStorage.getItem('auth_token');
-    console.log(this.adverts);
-    console.log(advertId);
     if (token) {
       const headers = { Authorization: `Bearer ${token}` };
-      this.http.delete(`http://localhost:8080/api/v1/adverts/delete/${advertId}`, { headers }).subscribe(
+      this.http.delete(`http://localhost:8080/api/v1/adverts/delete/${this.selectedAdvertId}`, { headers }).subscribe(
         () => {
           this.loadAdverts();
+          this.closeConfirmModal();
         },
         (error: any) => {
           console.error('Error deleting advert:', error);
