@@ -1,8 +1,29 @@
 <div class="container mt-5">
-  <div class="card">
+  <div class="card mb-4">
     <div class="card-body">
       <h2 class="card-title">{{ welcomeMessage }}</h2>
       <p class="card-text">Today is {{ currentDate | date: 'EEEE, dd.MM.yyyy' }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="weather" class="card mb-4">
+    <div class="card-body">
+      <h3 class="card-title">Current Weather</h3>
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <p class="card-text"><strong>Location:</strong> {{ weather.name }}</p>
+          <p class="card-text"><strong>Temperature:</strong> {{ weather.main.temp }} °C</p>
+          <p class="card-text"><strong>Weather:</strong> {{ weather.weather[0].description }}</p>
+        </div>
+        <div class="col-md-6 text-center">
+          <img [src]="'https://openweathermap.org/img/wn/' + weather.weather[0].icon + '.png'" alt="Weather Icon" class="weather-icon">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!weather" class="card">
+    <div class="card-body">
+      <p class="card-text">Loading weather data...</p>
     </div>
   </div>
 </div>
