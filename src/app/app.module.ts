@@ -22,6 +22,7 @@ import { AlertComponent } from './shared/components/alert/alert.component';
 import { ModalComponent } from './shared/components/modal/modal.component';
 import { EmployeeComponent } from './home/employee/employee.component';
 import { DeleteConfirmationModalComponent } from './shared/components/modal/delete-confirmation-modal/delete-confirmation-modal.component';
+import { CreateScheduleComponent } from './home/create-schedule/create-schedule.component';
 
 export function tokenGetter() {
   return localStorage.getItem('auth_token');
@@ -42,7 +43,8 @@ export function tokenGetter() {
     AlertComponent,
     ModalComponent,
     EmployeeComponent,
-    DeleteConfirmationModalComponent
+    DeleteConfirmationModalComponent,
+    CreateScheduleComponent
   ],
   imports: [
     BrowserModule,

@@ -41,4 +41,7 @@
     </ng-template>
   </div>
 
+  <div *ngIf="role === 'MANAGER'" class="text-center mt-4">
+    <button class="btn btn-success" (click)="navigateToCreateSchedule()">Create New Schedule</button>
+  </div>
 </div>

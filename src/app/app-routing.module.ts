@@ -10,17 +10,19 @@ import {ProfileComponent} from "./home/profile/profile.component";
 import {DashboardComponent} from "./home/dashboard/dashboard.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {EmployeeComponent} from "./home/employee/employee.component";
+import {CreateScheduleComponent} from "./home/create-schedule/create-schedule.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, title: 'Login' },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'profile', component: ProfileComponent },
-      { path: 'schedule', component: ScheduleComponent },
-      { path: 'adverts', component: AdvertsComponent },
-      { path: 'availability', component: AvailabilityComponent },
-      { path: 'employee', component: EmployeeComponent },
+      { path: 'dashboard', component: DashboardComponent, title: 'Dashboard' },
+      { path: 'profile', component: ProfileComponent, title: 'My Profile' },
+      { path: 'schedule', component: ScheduleComponent, title: 'Schedule' },
+      { path: 'create-schedule', component: CreateScheduleComponent, title: 'Create Schedule'},
+      { path: 'adverts', component: AdvertsComponent, title: 'Adverts' },
+      { path: 'availability', component: AvailabilityComponent, title: 'Availability' },
+      { path: 'employee', component: EmployeeComponent, title: 'Employee List' },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ] },
   { path: '**', component: PageNotFoundComponent}

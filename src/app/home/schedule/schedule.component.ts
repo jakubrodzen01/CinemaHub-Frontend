@@ -24,7 +24,6 @@ export class ScheduleComponent implements OnInit {
   daysOfWeek: string[] = [];
   places: string[] = ['SERVICE', 'BAR', 'CAFE'];
   role: string | null = null;
-  isFormVisible: boolean = false;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -73,5 +72,9 @@ export class ScheduleComponent implements OnInit {
       }
       return this.places.indexOf(a.place) - this.places.indexOf(b.place);
     });
+  }
+
+  navigateToCreateSchedule() {
+    this.router.navigate(['/home/create-schedule']);
   }
 }
